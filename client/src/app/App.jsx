@@ -1,5 +1,6 @@
+// App.jsx
 import "./App.css";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import LogIn from "features/auth/LogIn";
 import Register from "features/auth/Register";
 import Journal from "features/journal/components";
@@ -13,7 +14,6 @@ import useSafety from "common/hooks/useSafety";
 import { updateAlarm } from "features/safety/safetySlice";
 import { useDispatch } from "react-redux";
 
-// helper: today's date in YYYY-MM-DD
 const today = new Date().toISOString().split("T")[0];
 
 const App = () => {
@@ -21,13 +21,10 @@ const App = () => {
   const { darkMode, toggleDarkMode } = useMode();
   const locked = useSafety();
   const dispatch = useDispatch();
-  const location = useLocation();
 
   const handler = () => dispatch(updateAlarm());
 
-  if (!hasCheckedUsername) {
-    return <Loading />;
-  }
+  if (!hasCheckedUsername) return <Loading />;
 
   return (
     <div
@@ -38,17 +35,25 @@ const App = () => {
     >
       <Error />
       <ToggleDarkModeButton {...{ darkMode, toggleDarkMode }} />
+
       <Routes>
-        {username ? (
+        {/* Authenticated Routes */}
+        {username && (
           <>
             <Route path="/journal/:date" element={<Journal />} />
             <Route
               path="/"
               element={<Navigate to={`/journal/${today}`} replace />}
             />
-            <Route path="*" element={<Navigate to={`/journal/${today}`} replace />} />
+            <Route
+              path="*"
+              element={<Navigate to={`/journal/${today}`} replace />}
+            />
           </>
-        ) : (
+        )}
+
+        {/* Unauthenticated Routes */}
+        {!username && (
           <>
             <Route path="/login" element={<LogIn />} />
             <Route path="/register" element={<Register />} />
@@ -57,6 +62,7 @@ const App = () => {
           </>
         )}
       </Routes>
+
       {locked && <Safety />}
     </div>
   );
