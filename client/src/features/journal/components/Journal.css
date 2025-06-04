@@ -1,0 +1,38 @@
+.Journal {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: 4em 0 1.25em 0;
+  padding-bottom: 1.75em;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.bright .Editor,
+.bright .Journal input.bp4-input,
+.bright .Editor textarea.bp4-input.bp4-large {
+  background: #f9f9f9;
+}
+
+.dark .Editor,
+.dark .Journal input.bp4-input,
+.dark .Editor textarea.bp4-input.bp4-large {
+  background: #353538;
+}
+
+@media (min-width: 420px) {
+  .Journal {
+    margin: 6em 0 2.5em 0;
+    padding: 0 6em 3.5em 6em;
+    align-items: stretch;
+  }
+}
+
+@media (min-width: 900px) {
+  .Journal {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}

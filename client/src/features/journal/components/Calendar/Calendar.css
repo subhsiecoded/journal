@@ -1,0 +1,63 @@
+@import "@blueprintjs/datetime/lib/css/blueprint-datetime.css";
+
+.Journal .bp4-elevation-1 {
+  box-shadow: none;
+}
+
+.Journal .DayPicker-Day.DayPicker-Day--selected,
+.Journal .bp4-datepicker .DayPicker-Day,
+.Journal .bp4-datepicker .bp4-datepicker-day-wrapper {
+  border-radius: 50%;
+}
+
+.Journal .bp4-datepicker .bp4-datepicker-day-wrapper {
+  padding: 0.9em 0.8em;
+}
+
+.Journal .calendar-container .bp4-datepicker {
+  background: #00000000;
+}
+
+.Journal .bp4-divider {
+  border: none;
+}
+
+.calendar-container {
+  display: flex;
+  height: 100%;
+  margin-bottom: 1.5em;
+  flex-direction: column;
+}
+
+.calendar-container > *:last-child {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+@media (min-width: 420px) {
+  .calendar-container {
+    flex-direction: row;
+    height: 20em;
+  }
+}
+
+@media (min-width: 900px) {
+  .calendar-container {
+    height: 100%;
+    width: 20em;
+    margin-bottom: 0;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .calendar-container > *:last-child {
+    margin-top: 1em;
+  }
+
+  .calendar-container > *:first-child {
+    width: 100%;
+  }
+}

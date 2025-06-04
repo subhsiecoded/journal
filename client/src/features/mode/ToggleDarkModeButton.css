@@ -1,0 +1,12 @@
+.DarkModeButton {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  z-index: 2;
+}
+
+.DarkModeButton span[icon="moon"] svg {
+  position: relative;
+  bottom: 0.03em;
+  left: 0.08em;
+}
