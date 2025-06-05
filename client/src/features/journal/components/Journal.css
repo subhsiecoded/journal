@@ -1,31 +1,111 @@
+/* Import cool font */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap');
+
+/* Background animation */
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Animated background container */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  background: linear-gradient(-45deg, #1a1a40, #42275a, #734b6d, #000000);
+  background-size: 400% 400%;
+  animation: gradientBackground 15s ease infinite;
+  color: #fff;
+}
+
+/* Journal layout */
 .Journal {
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
-  margin: 4em 0 1.25em 0;
-  padding-bottom: 1.75em;
-  flex-direction: column;
+  margin: 5em 0 2em;
+  padding: 1em 2em;
   align-items: center;
-  overflow-y: scroll;
+  overflow-y: auto;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 1s ease-out both;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
-.bright .Editor,
-.bright .Journal input.bp4-input,
-.bright .Editor textarea.bp4-input.bp4-large {
-  background: #f9f9f9;
+/* Fade animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.dark .Editor,
-.dark .Journal input.bp4-input,
-.dark .Editor textarea.bp4-input.bp4-large {
-  background: #353538;
+/* Custom Scrollbar */
+.Journal::-webkit-scrollbar {
+  width: 10px;
+}
+.Journal::-webkit-scrollbar-thumb {
+  background: #9d4edd;
+  border-radius: 10px;
+}
+.Journal::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-@media (min-width: 420px) {
+/* Editor Styles */
+.Editor,
+.Journal input.bp4-input,
+.Editor textarea.bp4-input.bp4-large {
+  width: 100%;
+  border: none;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.Journal input.bp4-input::placeholder,
+.Editor textarea.bp4-input.bp4-large::placeholder {
+  color: #ccc;
+}
+
+/* Hover & Focus Effects */
+.Journal input.bp4-input:hover,
+.Editor textarea.bp4-input.bp4-large:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 10px #9d4edd;
+}
+
+.Journal input.bp4-input:focus,
+.Editor textarea.bp4-input.bp4-large:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px #c77dff;
+}
+
+/* Responsive layout */
+@media (min-width: 600px) {
   .Journal {
-    margin: 6em 0 2.5em 0;
-    padding: 0 6em 3.5em 6em;
-    align-items: stretch;
+    padding: 2em 4em;
   }
 }
 
@@ -34,5 +114,17 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 2em;
+  }
+
+  .Editor {
+    flex: 2;
+  }
+
+  .Sidebar {
+    flex: 1;
+    position: sticky;
+    top: 6em;
+    animation: fadeInUp 1.2s ease-out both;
   }
 }
